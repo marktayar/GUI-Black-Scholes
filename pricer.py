@@ -41,15 +41,9 @@ st.title("Pricing a Black-Scholes Option")
 st.write(
     """
     The Black-Scholes model is a widely used framework for pricing European-style options. 
-    It calculates the fair value of options based on key parameters such as:
-    - Current price of the underlying asset (\(S_0\))
-    - Strike price (\(K\))
-    - Time to maturity (\(T\))
-    - Volatility (\(\\sigma\))
-    - Risk-free rate (\(r\))
-    - Dividend yield (\(q\))
+    It calculates the fair value of options based on key parameters.
 
-    The formulas for Call and Put options are shown below, based on your selection:
+    The formulas for the""", add_selectbox ,"""  option is shown below:
     """
 )
 
@@ -95,7 +89,8 @@ st.markdown(
 
 st.write(
     """
-    - **C**: Price of the Call option  
+    - **C**: Price of the Call option
+    - **P**: Price of the Put option   
     - **P**: Price of the Put option  
     - **S₀**: Current price of the underlying asset  
     - **K**: Strike price  
