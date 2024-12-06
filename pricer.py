@@ -113,7 +113,11 @@ st.write(
     """
 )
 
-st.markdown("### Calculation of Parameters \(d_1\) and \(d_2\):")
+st.markdown("### Calculation of CDF Parameters:")
 
-st.latex("d_1 = \frac{\ln(S_0 / K) + (r - q + \sigma^2 / 2) T}{\sigma \sqrt{T}}")
+st.latex(
+    r"""
+    d_1 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r - q + \frac{\sigma^2}{2}\right) T}{\sigma \sqrt{T}}
+    """
+)
 st.latex("d_2 = d_1 - {\sigma \sqrt{T}}")
