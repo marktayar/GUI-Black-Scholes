@@ -53,6 +53,67 @@ st.write(
     """
 )
 
-# Sidebar selection
-option_type = st.sidebar.selectbox("Select Option Type", ["Call", "Put"])
-option_type
+# Title and Introduction
+st.title("Pricing a Black-Scholes Option")
+
+st.write(
+    """
+    The Black-Scholes model is a widely used framework for pricing European-style options. 
+    It calculates the fair value of options based on key parameters such as:
+    - Current price of the underlying asset (\(S_0\))
+    - Strike price (\(K\))
+    - Time to maturity (\(T\))
+    - Volatility (\(\\sigma\))
+    - Risk-free rate (\(r\))
+    - Dividend yield (\(q\))
+
+    The formulas for Call and Put options are shown below, based on your selection:
+    """
+)
+
+
+
+# Display the formula dynamically
+if add_selectbox == "Call":
+    st.markdown(
+        """
+        ### Call Option Formula:
+        """,
+        unsafe_allow_html=True,
+    )
+    st.latex("C = S_0 \cdot e^{-qT} \cdot N(d_1) - K \cdot e^{-rT} \cdot N(d_2)")
+elif add_selectbox == "Put":
+    st.markdown(
+        """
+        ### Put Option Formula:
+        """,
+        unsafe_allow_html=True,
+    )
+    st.latex("P = K \cdot e^{-rT} \cdot N(-d_2) - S_0 \cdot e^{-qT} \cdot N(-d_1)")
+
+# Common for both options
+st.markdown(
+    """
+    The parameters used in the formulas are explained below:
+    """,
+    unsafe_allow_html=True,
+)
+
+st.write(
+    """
+    - **C**: Price of the Call option  
+    - **P**: Price of the Put option  
+    - **S₀**: Current price of the underlying asset  
+    - **K**: Strike price  
+    - **T**: Time to maturity (in years)  
+    - **r**: Risk-free interest rate (annualized)  
+    - **q**: Dividend yield (annualized)  
+    - **σ**: Volatility (annualized)  
+    - **N(x)**: Cumulative distribution function of the standard normal distribution  
+    """
+)
+
+st.markdown("### Calculation of Parameters \(d_1\) and \(d_2\):")
+
+st.latex("d_1 = \frac{\ln(S_0 / K) + (r - q + \sigma^2 / 2) T}{\sigma \sqrt{T}}")
+st.latex("d_2 = d_1 - {\sigma \sqrt{T}}")
