@@ -35,17 +35,6 @@ add_textbox_dividend = st.sidebar.text_input("Dividend Rate in percentage", key=
 st.sidebar.markdown(f"<small>You entered: {add_textbox_dividend}%</small>", unsafe_allow_html=True)
 
 
-# Title and Introduction
-st.title("Pricing a Black-Scholes Option")
-
-st.write(
-    """
-    The Black-Scholes model is a widely used framework for pricing European-style options. 
-    It calculates the fair value of options based on key parameters.
-
-    The formulas for the""", add_selectbox ,"""  option is shown below:
-    """
-)
 
 # Title and Introduction
 st.title("Pricing a Black-Scholes Option")
