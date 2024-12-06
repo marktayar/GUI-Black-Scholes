@@ -121,3 +121,44 @@ st.latex(
     """
 )
 st.latex("d_2 = d_1 - {\sigma \sqrt{T}}")
+
+
+def BS_price(current_price, dividend_rate, rf, vol, T, K):
+    # Calculate d1 and d2
+    d1 = (np.log(current_price / K) + (rf - dividend_rate + 0.5 * vol**2) * T) / (vol * np.sqrt(T))
+    d2 = d1 - vol * np.sqrt(T)
+
+    # Calculate call price
+    call_price = (current_price * np.exp(-dividend_rate * T) * norm.cdf(d1)) - (K * np.exp(-rf * T) * norm.cdf(d2))
+    
+    # Calculate put price
+    put_price = (K * np.exp(-rf * T) * norm.cdf(-d2)) - (current_price * np.exp(-dividend_rate * T) * norm.cdf(-d1))
+
+    return call_price, put_price
+
+    
+
+# Display the results if all fields are filled
+if add_textbox_price and add_textbox_strike and add_textbox_matu and add_textbox_sigma and add_textbox_rf and add_textbox_dividend:
+    # Convert input fields to appropriate data types
+    current_price = float(add_textbox_price)
+    strike_price = float(add_textbox_strike)
+    maturity = float(add_textbox_matu)
+    volatility = float(add_textbox_sigma) / 100  # Convert to decimal
+    rf = float(add_textbox_rf) / 100  # Convert to decimal
+    dividend_rate = float(add_textbox_dividend) / 100  # Convert to decimal
+
+    # Display a loading spinner while the calculation is in progress
+    with st.spinner("Calculating the option price..."):
+        # Calculate option prices
+        call_price, put_price = BS_price(current_price, dividend_rate, rf, volatility, maturity, strike_price)
+
+    # Display the results in an aesthetically pleasing format
+    st.markdown("### Option Prices")
+    if add_selectbox == "Call":
+        st.success(f"The **Call Option Price** is: **${call_price:.2f}**")
+    elif add_selectbox == "Put":
+        st.success(f"The **Put Option Price** is: **${put_price:.2f}**")
+
+else:
+    st.warning("Please fill out all fields in the sidebar to calculate the option price.")
