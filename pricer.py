@@ -9,5 +9,5 @@ add_selectbox = st.sidebar.selectbox(
     ('Call', 'Put')
 )
 
-add_slider = st.sidebar.slider('Actual Price')  # 👈 this is a widget
+add_slider = st.sidebar.slider('Actual Price', 0.0, 1000.0)  # 👈 this is a widget
 
